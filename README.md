@@ -1,4 +1,4 @@
-# RafalW3bCraft Portfolio t
+# RafalW3bCraft Portfolio
 **Turbulentiam amplectere, supra vola** *(Embrace the turbulence, fly above)*
 
 A comprehensive cyberpunk-themed portfolio platform showcasing advanced cybersecurity engineering, app development, and strategic defense solutions. Built with modern web technologies and featuring autonomous AI capabilities.
