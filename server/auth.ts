@@ -1,8 +1,12 @@
 import type { Express, Request, Response, NextFunction } from 'express';
 import session from 'express-session';
+<<<<<<< HEAD
 import passport from 'passport';
 import rateLimit from 'express-rate-limit';
 import { configureOAuth } from './oauth-config-final';
+=======
+import rateLimit from 'express-rate-limit';
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
 import { validateAdminCredentials } from './admin-credentials';
 import { storage } from './storage';
 
@@ -38,6 +42,7 @@ export const adminLoginLimiter = rateLimit({
   skip: (req) => process.env.NODE_ENV === 'development'
 });
 
+<<<<<<< HEAD
 // Rate limiting for OAuth attempts
 export const oauthLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -49,12 +54,16 @@ export const oauthLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false
 });
+=======
+// OAuth removed - Admin-only system
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
 
 // Setup authentication system
 export function setupAuth(app: Express) {
   // Configure session middleware
   app.use(session(sessionConfig));
   
+<<<<<<< HEAD
   // Initialize Passport
   app.use(passport.initialize());
   app.use(passport.session());
@@ -62,6 +71,8 @@ export function setupAuth(app: Express) {
   // Configure OAuth strategies - SECURE VERSION  
   configureOAuth();
   
+=======
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
   // Apply rate limiting to OAuth routes (handled by auth-routes.ts)
   
   // Admin login route (separate from OAuth)  
@@ -201,18 +212,27 @@ export function setupAuth(app: Express) {
   });
 }
 
+<<<<<<< HEAD
 // Middleware to check if user is authenticated
 export function requireAuth(req: AuthenticatedRequest, res: Response, next: NextFunction) {
   const user = req.user || req.session?.user;
   const isAdmin = req.session?.isAdmin;
   
   if (req.isAuthenticated() || user || isAdmin) {
+=======
+// Middleware to check if user is authenticated (Admin-only)
+export function requireAuth(req: AuthenticatedRequest, res: Response, next: NextFunction) {
+  const isAdmin = req.session?.isAdmin;
+  
+  if (isAdmin) {
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
     return next();
   }
   
   // For API routes, return JSON error
   if (req.path.startsWith('/api/')) {
     return res.status(401).json({ 
+<<<<<<< HEAD
       error: 'Authentication required',
       redirectTo: '/login'
     });
@@ -220,6 +240,15 @@ export function requireAuth(req: AuthenticatedRequest, res: Response, next: Next
   
   // For web routes, redirect to login
   res.redirect('/login');
+=======
+      error: 'Admin authentication required',
+      redirectTo: '/admin-login'
+    });
+  }
+  
+  // For web routes, redirect to admin login
+  res.redirect('/admin-login');
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
 }
 
 // Middleware to check if user is admin - ENHANCED SECURITY
@@ -284,9 +313,15 @@ export function getCurrentUser(req: AuthenticatedRequest, res: Response, next: N
   next();
 }
 
+<<<<<<< HEAD
 // Utility function to check if user is authenticated
 export function isAuthenticated(req: AuthenticatedRequest): boolean {
   return req.isAuthenticated() || !!req.session?.user;
+=======
+// Utility function to check if user is authenticated (Admin-only)
+export function isAuthenticated(req: AuthenticatedRequest): boolean {
+  return !!req.session?.isAdmin;
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
 }
 
 // Utility function to check if user is admin - ENHANCED SECURITY

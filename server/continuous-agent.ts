@@ -60,7 +60,11 @@ class ContinuousAgent {
 
   private async executeMaintenanceLoop() {
     // Starting maintenance loop...
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
     try {
       // 1. Update GitHub repository data
       await this.updateRepositoryData();
@@ -90,13 +94,21 @@ class ContinuousAgent {
 
   private async updateRepositoryData() {
     console.log('📊 Updating repository data...');
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
     try {
       const repoUpdates = await Promise.allSettled(
         this.config.featuredRepos.map(async (repoName) => {
           const repoData = await githubService.getRepository(repoName);
           const commits = await githubService.getRecentCommits(repoName, 5);
+<<<<<<< HEAD
           
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
           return {
             name: repoName,
             data: repoData,
@@ -108,7 +120,11 @@ class ContinuousAgent {
 
       const successful = repoUpdates.filter(result => result.status === 'fulfilled');
       console.log(`✓ Updated ${successful.length}/${this.config.featuredRepos.length} repositories`);
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
       return successful.map(result => (result as PromiseFulfilledResult<any>).value);
     } catch (error) {
       console.error('Failed to update repository data:', error);
@@ -118,7 +134,11 @@ class ContinuousAgent {
 
   private async generateContentUpdates() {
     console.log('✍️ Checking for content generation opportunities...');
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
     try {
       // Check if any repos have new commits since last blog generation
       const adminUser = await storage.getAdminUser();
@@ -137,12 +157,20 @@ class ContinuousAgent {
 
   private async performanceAudit() {
     console.log('⚡ Running performance audit...');
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
     try {
       // Basic performance monitoring without external dependencies
       const memoryUsage = process.memoryUsage();
       const uptime = process.uptime();
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
       // Log memory usage if high
       if (memoryUsage.heapUsed > 500 * 1024 * 1024) { // 500MB threshold
         console.warn('⚠️ High memory usage detected');
@@ -157,7 +185,11 @@ class ContinuousAgent {
 
   private async securityAudit() {
     console.log('🔒 Running security audit...');
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
     try {
       // Check for suspicious activity patterns
       const recentModerationLogs = await storage.getRecentModerationLogs(24); // Last 24 hours
@@ -181,11 +213,16 @@ class ContinuousAgent {
 
   private async databaseMaintenance() {
     console.log('🗄️ Running database maintenance...');
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
     try {
       // Clean up old analytics data (keep last 90 days)
       const cutoffDate = new Date();
       cutoffDate.setDate(cutoffDate.getDate() - 90);
+<<<<<<< HEAD
       
       await storage.cleanupOldAnalytics(cutoffDate);
       
@@ -193,6 +230,15 @@ class ContinuousAgent {
       const moderationCutoff = new Date();
       moderationCutoff.setDate(moderationCutoff.getDate() - 30);
       
+=======
+
+      await storage.cleanupOldAnalytics(cutoffDate);
+
+      // Clean up old moderation logs (keep last 30 days)
+      const moderationCutoff = new Date();
+      moderationCutoff.setDate(moderationCutoff.getDate() - 30);
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
       await storage.cleanupOldModerationLogs(moderationCutoff);
 
       console.log('✓ Database maintenance completed');
@@ -203,7 +249,11 @@ class ContinuousAgent {
 
   private async notifyAdmin(subject: string, details: any) {
     console.log(`📧 Admin notification: ${subject}`, details);
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
     try {
       const adminUser = await storage.getAdminUser();
       if (adminUser) {

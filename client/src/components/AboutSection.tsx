@@ -51,7 +51,11 @@ export function AboutSection() {
             </div>
             <p className="text-gray-300 mb-4">
               Started deep diving into Linux, ethical hacking, OSINT, and reverse engineering.
+<<<<<<< HEAD
               Built foundational cybersecurity knowledge with a focus on <strong className="text-neon-green">"Learning with Excellance."</strong>
+=======
+              Built foundational cybersecurity knowledge with a focus on <strong className="text-neon-green">"Learning with Excellence."</strong>
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
             </p>
           </div>
 
@@ -114,7 +118,11 @@ export function AboutSection() {
         <div className="mt-12">
           <div className="glass-morphism p-8 rounded-lg">
             <h3 className="font-cyber text-xl text-neon-green mb-6">Tech Arsenal & Specializations</h3>
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
             {/* Skills */}
             <div className="flex flex-wrap gap-3">
               {skills.map((skill, index) => (
@@ -140,4 +148,8 @@ export function AboutSection() {
       </div>
     </section>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)

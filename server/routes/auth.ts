@@ -7,6 +7,7 @@ const router = Router();
 // Apply getCurrentUser middleware to all auth routes
 router.use(getCurrentUser);
 
+<<<<<<< HEAD
 // Get current user information
 router.get('/me', (req: any, res: Response) => {
   const user = req.user || req.session?.user;
@@ -87,6 +88,51 @@ router.get('/profile', async (req: any, res: Response) => {
       provider: dbUser.provider,
       lastLogin: dbUser.lastLogin,
       createdAt: dbUser.createdAt
+=======
+// Get current admin information
+router.get('/me', (req: any, res: Response) => {
+  const user = req.session?.user;
+  const isAdmin = req.session?.isAdmin;
+  
+  if (!user || !isAdmin) {
+    return res.status(401).json({ error: 'Admin authentication required' });
+  }
+
+  // Return admin user data
+  return res.json({
+    id: user.id,
+    username: user.username,
+    role: user.role,
+    provider: user.provider,
+    isActive: true,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email
+  });
+});
+
+// Get admin profile
+router.get('/profile', async (req: any, res: Response) => {
+  try {
+    const user = req.session?.user;
+    const isAdmin = req.session?.isAdmin;
+    
+    if (!user || !isAdmin) {
+      return res.status(401).json({ error: 'Admin authentication required' });
+    }
+
+    // Return admin profile data
+    res.json({
+      id: user.id,
+      email: user.email,
+      username: user.username,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      role: user.role,
+      provider: user.provider,
+      lastLogin: user.lastLogin,
+      createdAt: user.createdAt
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
     });
   } catch (error) {
     console.error('Profile fetch error:', error);
@@ -94,6 +140,7 @@ router.get('/profile', async (req: any, res: Response) => {
   }
 });
 
+<<<<<<< HEAD
 // Update user profile
 router.put('/profile', requireAuth, async (req: any, res: Response) => {
   try {
@@ -150,10 +197,24 @@ router.put('/profile', requireAuth, async (req: any, res: Response) => {
     });
   } catch (error) {
     console.error('Profile update error:', error);
+=======
+// Profile updates disabled for admin-only system
+
+// Admin-only routes - No user management needed
+router.get('/admin/status', requireAdmin, async (req: Request, res: Response) => {
+  try {
+    res.json({ 
+      message: 'Admin-only system active',
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('Admin status fetch error:', error);
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
     res.status(500).json({ error: 'Internal server error' });
   }
 });
 
+<<<<<<< HEAD
 // Admin-only routes
 router.get('/admin/users', requireAdmin, async (req: Request, res: Response) => {
   try {
@@ -174,6 +235,17 @@ router.get('/status', (req: any, res: Response) => {
     isAuthenticated: !!user,
     isAdmin: user?.role === 'admin' || !!req.session?.isAdmin,
     user: user ? {
+=======
+// Get authentication status (Admin-only)
+router.get('/status', (req: any, res: Response) => {
+  const user = req.session?.user;
+  const isAdmin = !!req.session?.isAdmin;
+  
+  res.json({
+    isAuthenticated: isAdmin,
+    isAdmin: isAdmin,
+    user: isAdmin && user ? {
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
       id: user.id,
       username: user.username,
       role: user.role,

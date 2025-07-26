@@ -97,6 +97,7 @@ class GitHubService {
     if (cached) return cached;
 
     try {
+<<<<<<< HEAD
       const { data } = await this.octokit.repos.listForUser({
         username: this.username,
         type: 'owner',
@@ -107,6 +108,31 @@ class GitHubService {
       const repos = data as GitHubRepo[];
       this.setCache(cacheKey, repos);
       return repos;
+=======
+      let allRepos: GitHubRepo[] = [];
+      let page = 1;
+      let hasMorePages = true;
+
+      // Fetch all pages of repositories
+      while (hasMorePages) {
+        const { data } = await this.octokit.repos.listForUser({
+          username: this.username,
+          type: 'public', // Only public repositories
+          sort: 'updated',
+          per_page: 100,
+          page: page,
+        });
+
+        allRepos = allRepos.concat(data as GitHubRepo[]);
+        
+        // If we got less than 100 repos, we've reached the last page
+        hasMorePages = data.length === 100;
+        page++;
+      }
+
+      this.setCache(cacheKey, allRepos);
+      return allRepos;
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
     } catch (error) {
       console.error('Error fetching all repos:', error);
       return [];

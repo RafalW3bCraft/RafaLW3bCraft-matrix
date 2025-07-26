@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Users, MessageSquare, Shield, Bot, Zap, Crown, Github, Mail, ExternalLink } from 'lucide-react';
 
 export default function Community() {
+<<<<<<< HEAD
   const communityStats = [
     { label: 'Active Members', value: '247', icon: Users },
     { label: 'Messages Today', value: '1,204', icon: MessageSquare },
@@ -10,6 +11,8 @@ export default function Community() {
     { label: 'Admin Actions', value: '3', icon: Shield },
   ];
 
+=======
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
   const features = [
     {
       icon: MessageSquare,
@@ -56,13 +59,18 @@ export default function Community() {
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-5xl font-bold text-white mb-4">
+<<<<<<< HEAD
               <span className="text-neon-cyan">Falcon's</span> Community
+=======
+              <span className="text-neon-cyan">RafalW3bCraft</span> Community
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
             </h1>
             <p className="text-zinc-400 text-xl max-w-2xl mx-auto">
               Join the elite cybersecurity community. Share knowledge, collaborate on cutting-edge projects, and advance the field of cybersecurity together.
             </p>
           </div>
 
+<<<<<<< HEAD
           {/* Community Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
             {communityStats.map((stat, index) => (
@@ -75,6 +83,9 @@ export default function Community() {
               </Card>
             ))}
           </div>
+=======
+          
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
 
           {/* Features Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">

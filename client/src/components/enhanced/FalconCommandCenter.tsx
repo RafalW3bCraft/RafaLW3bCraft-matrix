@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
+<<<<<<< HEAD
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -15,6 +16,15 @@ import { useToast } from '@/hooks/use-toast';
 import { audioService } from '@/lib/audioService';
 import { apiRequest } from '@/lib/queryClient';
 import AIBlogWriter from './AIBlogWriter';
+=======
+import { useQuery } from '@tanstack/react-query';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { 
+  Crown, Shield, Database, CheckCircle, AlertTriangle
+} from 'lucide-react';
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
 import { FalconProtocolPanel } from './FalconProtocolPanel';
 
 interface AgentStatus {
@@ -30,6 +40,7 @@ interface AgentStatus {
 
 export function FalconCommandCenter() {
   const { user, isAuthenticated } = useAuth();
+<<<<<<< HEAD
   const [activeTab, setActiveTab] = useState('overview');
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -106,6 +117,15 @@ export function FalconCommandCenter() {
       });
       audioService.playErrorSound();
     },
+=======
+  const [activeTab, setActiveTab] = useState('falcon-protocol');
+
+  // Fetch agent status
+  const { data: agentStatus } = useQuery<AgentStatus>({
+    queryKey: ['/api/admin/agent-status'],
+    enabled: isAuthenticated && user?.role === 'admin',
+    refetchInterval: 30000,
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
   });
 
   if (!isAuthenticated || (user as any)?.role !== 'admin') {
@@ -118,12 +138,17 @@ export function FalconCommandCenter() {
           </CardTitle>
         </CardHeader>
         <CardContent className="text-center py-8">
+<<<<<<< HEAD
           <p className="text-zinc-400">Falcon Command Center requires admin privileges</p>
+=======
+          <p className="text-zinc-400">Falcon Protocol requires admin privileges</p>
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
         </CardContent>
       </Card>
     );
   }
 
+<<<<<<< HEAD
   const systemStats = [
     { 
       label: 'Agent Status', 
@@ -151,13 +176,19 @@ export function FalconCommandCenter() {
     },
   ];
 
+=======
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-white mb-2">
+<<<<<<< HEAD
             <span className="text-gold-accent">Falcon's</span> Command Center
+=======
+            <span className="text-gold-accent">Falcon</span> Protocol
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
           </h1>
           <p className="text-zinc-400">Supreme continuous enhancement system</p>
         </div>
@@ -167,6 +198,7 @@ export function FalconCommandCenter() {
         </Badge>
       </div>
 
+<<<<<<< HEAD
       {/* System Status Overview */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {systemStats.map((stat, index) => (
@@ -187,10 +219,16 @@ export function FalconCommandCenter() {
             <Activity className="h-4 w-4 mr-2" />
             Overview
           </TabsTrigger>
+=======
+      {/* Main Control Panel */}
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
+        <TabsList className="grid w-full grid-cols-2 bg-zinc-800 border-cyan-500/30">
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
           <TabsTrigger value="falcon-protocol" className="data-[state=active]:bg-gold-accent data-[state=active]:text-matrix-black">
             <Shield className="h-4 w-4 mr-2" />
             Falcon Protocol
           </TabsTrigger>
+<<<<<<< HEAD
           <TabsTrigger value="maintenance" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white">
             <Zap className="h-4 w-4 mr-2" />
             Maintenance
@@ -323,10 +361,19 @@ export function FalconCommandCenter() {
           </div>
         </TabsContent>
 
+=======
+          <TabsTrigger value="repositories" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white">
+            <Database className="h-4 w-4 mr-2" />
+            Repositories
+          </TabsTrigger>
+        </TabsList>
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
         <TabsContent value="falcon-protocol" className="space-y-6">
           <FalconProtocolPanel />
         </TabsContent>
 
+<<<<<<< HEAD
         <TabsContent value="content" className="space-y-6">
           <AIBlogWriter />
         </TabsContent>
@@ -352,6 +399,56 @@ export function FalconCommandCenter() {
                 <Shield className="h-4 w-4 mr-2" />
                 {securityAuditMutation.isPending ? 'Auditing...' : 'Start Security Audit'}
               </Button>
+=======
+        <TabsContent value="repositories" className="space-y-6">
+          <Card className="bg-zinc-900/90 border-cyan-500/30">
+            <CardHeader>
+              <CardTitle className="text-cyan-400 flex items-center gap-2">
+                <Database className="h-5 w-5" />
+                Monitored Repositories
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                {agentStatus?.config?.featuredRepos?.map((repo, index) => (
+                  <div key={index} className="flex items-center justify-between p-3 bg-zinc-800/50 rounded-lg border border-cyan-500/20">
+                    <div className="flex items-center gap-3">
+                      <CheckCircle className="h-5 w-5 text-green-400" />
+                      <span className="text-zinc-300 font-mono">{repo}</span>
+                    </div>
+                    <Badge variant="outline" className="border-green-500/50 text-green-400">
+                      Active
+                    </Badge>
+                  </div>
+                )) || (
+                  <div className="text-zinc-400 text-center py-8">
+                    <AlertTriangle className="h-8 w-8 mx-auto mb-2 text-orange-400" />
+                    <p>Loading repositories...</p>
+                  </div>
+                )}
+              </div>
+
+              {agentStatus?.config?.featuredRepos && (
+                <div className="mt-6 p-4 bg-zinc-800/30 rounded-lg border border-cyan-500/20">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-zinc-400">Total Repositories:</span>
+                    <span className="text-cyan-400 font-mono">{agentStatus.config.featuredRepos.length}</span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm mt-2">
+                    <span className="text-zinc-400">Auto-Generation:</span>
+                    <Badge variant={agentStatus.config.enableAutoGeneration ? "default" : "secondary"}>
+                      {agentStatus.config.enableAutoGeneration ? 'Enabled' : 'Disabled'}
+                    </Badge>
+                  </div>
+                  <div className="flex items-center justify-between text-sm mt-2">
+                    <span className="text-zinc-400">Security Audit:</span>
+                    <Badge variant={agentStatus.config.enableSecurityAudit ? "default" : "secondary"}>
+                      {agentStatus.config.enableSecurityAudit ? 'Active' : 'Inactive'}
+                    </Badge>
+                  </div>
+                </div>
+              )}
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
             </CardContent>
           </Card>
         </TabsContent>

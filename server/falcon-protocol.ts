@@ -90,7 +90,11 @@ export class FalconProtocol {
 
   private async executeEnhancementCycle() {
     console.log('🔱 Starting Falcon Enhancement Cycle...');
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
     try {
       // Execute the Supreme Enhancement Cycle (Falcon's Crown Directive)
       await this.executeSupremeEnhancementCycle();
@@ -143,7 +147,11 @@ export class FalconProtocol {
   // 1. Auto GitHub Sync & Update Detection
   private async githubSyncAndUpdate() {
     console.log('🔄 GitHub Sync & Update Detection...');
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
     try {
       // Update repository data
       for (const repo of this.config.featuredRepos) {
@@ -174,7 +182,11 @@ export class FalconProtocol {
   // 2. Blog Enhancement Cycle
   private async blogEnhancementCycle() {
     console.log('✍️ Blog Enhancement Cycle...');
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
     try {
       const adminUser = await storage.getAdminUser();
       if (!adminUser) {
@@ -184,7 +196,11 @@ export class FalconProtocol {
 
       // Generate blogs for featured repositories
       await aiBlogGenerator.generateBlogsForFeaturedRepos();
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
       console.log('✓ Blog enhancement completed');
     } catch (error) {
       console.error('Blog enhancement failed:', error);
@@ -195,11 +211,19 @@ export class FalconProtocol {
   // 3. Performance Tuning
   private async performanceTuning() {
     console.log('⚡ Performance Tuning...');
+<<<<<<< HEAD
     
     try {
       const memoryUsage = process.memoryUsage();
       const uptime = process.uptime();
       
+=======
+
+    try {
+      const memoryUsage = process.memoryUsage();
+      const uptime = process.uptime();
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
       // Log performance metrics
       await storage.logSystemHealth('performance', 'memory_usage', {
         heapUsed: memoryUsage.heapUsed,
@@ -229,7 +253,11 @@ export class FalconProtocol {
   // 4. Security Loop
   private async securityLoop() {
     console.log('🔒 Security Loop...');
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
     try {
       // Check for recent failed login attempts
       const recentFailures = await storage.getRecentFailedLogins(24);
@@ -250,7 +278,11 @@ export class FalconProtocol {
       }
 
       await storage.logSystemHealth('security', 'threat_status', { status: 'clear' });
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
       console.log('✓ Security audit completed');
     } catch (error) {
       console.error('Security loop failed:', error);
@@ -261,6 +293,7 @@ export class FalconProtocol {
   // 5. Community Moderation
   private async communityModeration() {
     console.log('💬 Community Moderation...');
+<<<<<<< HEAD
     
     try {
       // This would integrate with the existing moderation service
@@ -268,6 +301,15 @@ export class FalconProtocol {
       
       await storage.logSystemHealth('moderation', 'ai_filter_status', { status: 'active' });
       
+=======
+
+    try {
+      // This would integrate with the existing moderation service
+      // to perform periodic checks and updates
+
+      await storage.logSystemHealth('moderation', 'ai_filter_status', { status: 'active' });
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
       console.log('✓ Community moderation check completed');
     } catch (error) {
       console.error('Community moderation failed:', error);
@@ -278,7 +320,11 @@ export class FalconProtocol {
   // 6. Infrastructure Monitoring
   private async infrastructureMonitoring() {
     console.log('🛠️ Infrastructure Monitoring...');
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
     try {
       // Log overall system health
       await storage.logSystemHealth('infrastructure', 'overall_status', { 
@@ -323,10 +369,25 @@ export class FalconProtocol {
       // Write report to agent_logs directory
       const fs = await import('fs');
       const path = await import('path');
+<<<<<<< HEAD
       const reportPath = path.join(process.cwd(), 'agent_logs', `falcon-report-${Date.now()}.json`);
       
       await fs.promises.writeFile(reportPath, JSON.stringify(reportData, null, 2));
       
+=======
+      const agentLogsDir = path.join(process.cwd(), 'agent_logs');
+
+      // Create directory if it doesn't exist
+      try {
+        await fs.promises.access(agentLogsDir);
+      } catch {
+        await fs.promises.mkdir(agentLogsDir, { recursive: true });
+      }
+
+      const reportPath = path.join(agentLogsDir, `falcon-report-${Date.now()}.json`);
+      await fs.promises.writeFile(reportPath, JSON.stringify(reportData, null, 2));
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
       console.log(`📊 Agent report generated: ${reportPath}`);
     } catch (error) {
       console.error('Failed to generate agent report:', error);
@@ -336,7 +397,11 @@ export class FalconProtocol {
   // Lighthouse-style audit system
   public async performLighthouseAudit() {
     console.log('🔍 Performing Lighthouse-style audit...');
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
     const auditResults = {
       timestamp: new Date().toISOString(),
       scores: {
@@ -353,7 +418,11 @@ export class FalconProtocol {
       // Security audit
       const failedLogins = await storage.getRecentFailedLogins(24);
       auditResults.scores.security = failedLogins.length > 10 ? 60 : 95;
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
       if (failedLogins.length > 10) {
         auditResults.issues.push(`High failed login rate: ${failedLogins.length} in 24h`);
         auditResults.fixes.push('Enhanced rate limiting activated');
@@ -363,7 +432,11 @@ export class FalconProtocol {
       const memUsage = process.memoryUsage();
       const memUsageMB = memUsage.heapUsed / 1024 / 1024;
       auditResults.scores.performance = memUsageMB > 500 ? 70 : memUsageMB > 200 ? 85 : 95;
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
       if (memUsageMB > 500) {
         auditResults.issues.push(`High memory usage: ${Math.round(memUsageMB)}MB`);
         auditResults.fixes.push('Memory optimization recommended');
@@ -372,7 +445,11 @@ export class FalconProtocol {
       // Functionality audit
       const blogPosts = await storage.getAllBlogPosts(true);
       auditResults.scores.functionality = blogPosts.length > 0 ? 95 : 80;
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
       if (blogPosts.length === 0) {
         auditResults.issues.push('No published blog posts found');
         auditResults.fixes.push('AI blog generation activated');
@@ -382,7 +459,11 @@ export class FalconProtocol {
       auditResults.scores.accessibility = 90; // Assume good with shadcn/ui components
 
       console.log(`🔍 Lighthouse audit completed - Security: ${auditResults.scores.security}%, Performance: ${auditResults.scores.performance}%, Functionality: ${auditResults.scores.functionality}%`);
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
       return auditResults;
     } catch (error) {
       console.error('Lighthouse audit failed:', error);
@@ -394,7 +475,11 @@ export class FalconProtocol {
   // Auto-fix detected issues
   public async performAutoFixes() {
     console.log('🔧 Performing automatic fixes...');
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
     try {
       const fixes = [];
 
@@ -432,7 +517,11 @@ export class FalconProtocol {
   // Enhanced enhancement cycle with full directive compliance
   public async executeSupremeEnhancementCycle() {
     console.log('🧠👁️‍🗨️ Executing Supreme Enhancement Cycle - Falcon\'s Crown Directive');
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
     try {
       // 1. Full-Area Bug Sweep
       await this.performBugSweep();
@@ -491,12 +580,20 @@ export class FalconProtocol {
 
   private async validateAIFunctionality() {
     console.log('🤖 Validating AI Functionality...');
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
     try {
       // Test blog generation capability
       const blogPosts = await storage.getAllBlogPosts();
       const autoGeneratedPosts = blogPosts.filter(post => post.isAutoGenerated);
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
       if (autoGeneratedPosts.length === 0) {
         console.log('⚠️ No AI-generated blog posts found, triggering generation');
         await aiBlogGenerator.generateBlogsForFeaturedRepos();
@@ -510,7 +607,11 @@ export class FalconProtocol {
 
   private async performSecurityScan() {
     console.log('🛡️ Performing Security Perimeter Scan...');
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
     try {
       const securityMetrics = {
         failedLogins: await storage.getRecentFailedLogins(24),
@@ -533,13 +634,21 @@ export class FalconProtocol {
 
   private async validateUIUX() {
     console.log('🎨 Validating UI & UX Systems...');
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
     try {
       // This would typically involve checking frontend health
       // For now, we'll simulate basic checks
       await storage.logSystemHealth('ui_ux', 'theme_consistency', { status: 'cyberpunk_theme_active' });
       await storage.logSystemHealth('ui_ux', 'audio_system', { status: 'falcon_sounds_enabled' });
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
       console.log('✓ UI & UX validation completed');
     } catch (error) {
       console.error('UI/UX validation failed:', error);
@@ -548,7 +657,11 @@ export class FalconProtocol {
 
   private async validateAdminOps() {
     console.log('👨‍💼 Validating Admin Operations Core...');
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
     try {
       const adminUser = await storage.getAdminUser();
       const adminMetrics = {
@@ -558,7 +671,11 @@ export class FalconProtocol {
       };
 
       await storage.logSystemHealth('admin_ops', 'core_audit', adminMetrics);
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
       console.log('✓ Admin operations validation completed');
     } catch (error) {
       console.error('Admin ops validation failed:', error);
@@ -567,12 +684,20 @@ export class FalconProtocol {
 
   private async optimizeTelemetry() {
     console.log('📊 Optimizing Telemetry & Logging...');
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
     try {
       // Clean up old logs
       const cutoffDate = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000); // 7 days
       await storage.cleanupOldAnalytics(cutoffDate);
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
       // Log telemetry optimization
       await storage.logSystemHealth('telemetry', 'optimization', {
         cleaned_analytics: true,
@@ -590,7 +715,11 @@ export class FalconProtocol {
       const supremeReport = {
         timestamp: new Date().toISOString(),
         falconProtocol: 'v∞',
+<<<<<<< HEAD
         directive: 'Falcon\'s Crown Directive',
+=======
+        directive: 'Excellence Crown Directive',
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
         status: 'Supreme System Operational',
         audit: auditResults,
         systemHealth: {
@@ -607,10 +736,25 @@ export class FalconProtocol {
       // Write supreme report
       const fs = await import('fs');
       const path = await import('path');
+<<<<<<< HEAD
       const reportPath = path.join(process.cwd(), 'agent_logs', `supreme-report-${Date.now()}.json`);
       
       await fs.promises.writeFile(reportPath, JSON.stringify(supremeReport, null, 2));
       
+=======
+      const agentLogsDir = path.join(process.cwd(), 'agent_logs');
+
+      // Create directory if it doesn't exist
+      try {
+        await fs.promises.access(agentLogsDir);
+      } catch {
+        await fs.promises.mkdir(agentLogsDir, { recursive: true });
+      }
+
+      const reportPath = path.join(agentLogsDir, `supreme-report-${Date.now()}.json`);
+      await fs.promises.writeFile(reportPath, JSON.stringify(supremeReport, null, 2));
+
+>>>>>>> b0a6a12 (intiate personal portfolio site and more)
       console.log(`🧠👁️‍🗨️ Supreme Report generated: ${reportPath}`);
     } catch (error) {
       console.error('Failed to generate supreme report:', error);
