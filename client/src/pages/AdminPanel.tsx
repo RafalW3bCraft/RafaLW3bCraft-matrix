@@ -3,10 +3,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { useLocation } from 'wouter';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-<<<<<<< HEAD
 import { Badge } from '@/components/ui/badge';
-=======
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { 
   Shield, 
@@ -14,7 +11,6 @@ import {
   Users, 
   Activity,
   Database,
-<<<<<<< HEAD
   Eye,
   Clock,
   Server,
@@ -23,22 +19,13 @@ import {
   Settings,
   FileText,
   BarChart3
-=======
-  CheckCircle2,
-  Settings,
-  FileText,
-  AlertTriangle
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
 } from 'lucide-react';
 
 export default function AdminPanel() {
   const { user, isLoading, isAuthenticated, isAdmin, logout } = useAuth();
   const [, setLocation] = useLocation();
-<<<<<<< HEAD
   const [systemStats, setSystemStats] = useState(null);
   const [loading, setLoading] = useState(false);
-=======
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
 
   useEffect(() => {
     if (!isLoading && (!isAuthenticated || !isAdmin)) {
@@ -46,7 +33,6 @@ export default function AdminPanel() {
     }
   }, [isLoading, isAuthenticated, isAdmin, setLocation]);
 
-<<<<<<< HEAD
   useEffect(() => {
     if (isAdmin) {
       fetchSystemStats();
@@ -71,8 +57,6 @@ export default function AdminPanel() {
     }
   };
 
-=======
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
   const handleLogout = async () => {
     await logout();
     setLocation('/');
@@ -87,30 +71,20 @@ export default function AdminPanel() {
   }
 
   if (!isAuthenticated || !isAdmin) {
-<<<<<<< HEAD
     return null; // Will redirect to login
-=======
-    return null;
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
   }
 
   const stats = [
     { label: 'System Status', value: 'Operational', icon: CheckCircle2, color: 'text-green-400' },
     { label: 'Active Sessions', value: '1', icon: Users, color: 'text-blue-400' },
-<<<<<<< HEAD
     { label: 'System Uptime', value: systemStats?.uptime || 'Loading...', icon: Clock, color: 'text-purple-400' },
-=======
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
     { label: 'Database Status', value: 'Connected', icon: Database, color: 'text-green-400' }
   ];
 
   return (
     <div className="min-h-screen bg-gray-900 p-4">
       <div className="max-w-7xl mx-auto space-y-6">
-<<<<<<< HEAD
         {/* Header */}
-=======
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <div className="p-3 bg-red-600/20 border border-red-500/30 rounded-lg">
@@ -118,7 +92,6 @@ export default function AdminPanel() {
             </div>
             <div>
               <h1 className="text-3xl font-bold bg-gradient-to-r from-red-400 via-orange-400 to-yellow-400 bg-clip-text text-transparent">
-<<<<<<< HEAD
                 Admin Command Center
               </h1>
               <p className="text-gray-400 mt-1">
@@ -127,16 +100,6 @@ export default function AdminPanel() {
             </div>
           </div>
           
-=======
-                Admin Panel
-              </h1>
-              <p className="text-gray-400 mt-1">
-                Administrative Interface
-              </p>
-            </div>
-          </div>
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
           <div className="flex items-center space-x-3">
             <Button
               onClick={() => setLocation('/dashboard')}
@@ -145,11 +108,7 @@ export default function AdminPanel() {
             >
               User Dashboard
             </Button>
-<<<<<<< HEAD
             
-=======
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
             <Button
               variant="outline"
               onClick={handleLogout}
@@ -161,7 +120,6 @@ export default function AdminPanel() {
           </div>
         </div>
 
-<<<<<<< HEAD
         {/* Admin Security Notice */}
         <Alert className="bg-red-900/20 border-red-500/30">
           <AlertTriangle className="h-4 w-4 text-red-400" />
@@ -173,16 +131,6 @@ export default function AdminPanel() {
 
         {/* System Stats */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-=======
-        <Alert className="bg-red-900/20 border-red-500/30">
-          <AlertTriangle className="h-4 w-4 text-red-400" />
-          <AlertDescription className="text-red-200">
-            <strong>Security Notice:</strong> Administrative interface access logged.
-          </AlertDescription>
-        </Alert>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
           {stats.map((stat, index) => (
             <Card key={index} className="bg-gray-800/50 border-gray-700">
               <CardContent className="p-4">
@@ -198,7 +146,6 @@ export default function AdminPanel() {
           ))}
         </div>
 
-<<<<<<< HEAD
         {/* Admin Actions */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* User Management */}
@@ -233,9 +180,6 @@ export default function AdminPanel() {
           </Card>
 
           {/* System Monitoring */}
-=======
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
           <Card className="bg-gray-800/50 border-gray-700">
             <CardHeader>
               <CardTitle className="text-gray-100 flex items-center">
@@ -247,7 +191,6 @@ export default function AdminPanel() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
-<<<<<<< HEAD
               <Button 
                 variant="ghost" 
                 className="w-full justify-start text-gray-300 hover:text-gray-100"
@@ -269,21 +212,6 @@ export default function AdminPanel() {
           </Card>
 
           {/* Content Management */}
-=======
-              <div className="space-y-2">
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-400">System Health:</span>
-                  <span className="text-green-400">Good</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-400">Memory Usage:</span>
-                  <span className="text-blue-400">Normal</span>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
           <Card className="bg-gray-800/50 border-gray-700">
             <CardHeader>
               <CardTitle className="text-gray-100 flex items-center">
@@ -306,23 +234,15 @@ export default function AdminPanel() {
               <Button 
                 variant="ghost" 
                 className="w-full justify-start text-gray-300 hover:text-gray-100"
-<<<<<<< HEAD
                 disabled
               >
                 <Settings className="w-4 h-4 mr-2" />
                 Content Settings
-=======
-                onClick={() => setLocation('/admin')}
-              >
-                <Settings className="w-4 h-4 mr-2" />
-                Admin Dashboard
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
               </Button>
             </CardContent>
           </Card>
         </div>
 
-<<<<<<< HEAD
         {/* Current Session Info */}
         <Card className="bg-gray-800/50 border-gray-700">
           <CardHeader>
@@ -364,11 +284,6 @@ export default function AdminPanel() {
         <div className="text-center pt-4">
           <p className="text-xs text-gray-500 font-mono">
             RafalW3bCraft Admin Panel v2.0 | Falcon Protocol Active | All Actions Audited
-=======
-        <div className="text-center pt-4">
-          <p className="text-xs text-gray-500 font-mono">
-            RafalW3bCraft Admin Panel | All Actions Audited
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
           </p>
         </div>
       </div>

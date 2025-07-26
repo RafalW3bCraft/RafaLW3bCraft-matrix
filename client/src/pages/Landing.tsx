@@ -14,11 +14,7 @@ export default function Landing() {
       <div className="min-h-screen matrix-bg">
         <MatrixRain />
         <CyberNavigation />
-<<<<<<< HEAD
       
-=======
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
       <main className="relative z-10">
         <HeroSection />
         <AboutSection />
@@ -38,11 +34,7 @@ export default function Landing() {
                 <span className="font-cyber text-xl font-bold text-neon-cyan">RafalW3bCraft</span>
               </div>
               <p className="text-gray-400 font-mono text-sm">
-<<<<<<< HEAD
                 Forging Future-Ready Cyber Solutions. Secure. Smart. Sovereign.
-=======
-                Forging Future-Ready Cyber Solutions. Secure. Smart. Excellence.
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
                 <br />Cyber Engineering • App Innovation • Strategic Defense
               </p>
             </div>
@@ -90,11 +82,7 @@ export default function Landing() {
           <div className="border-t border-cyber-gray mt-12 pt-8 text-center">
             <p className="text-gray-400 font-mono text-sm">
               © 2025 RafalW3bCraft. All rights reserved.{' '}
-<<<<<<< HEAD
               <span className="text-neon-cyan">Secure. Smart. Sovereign.</span>
-=======
-              <span className="text-neon-cyan">Secure. Smart. Excellence.</span>
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
             </p>
           </div>
         </div>
@@ -102,8 +90,4 @@ export default function Landing() {
       </div>
     </ThemeProvider>
   );
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> b0a6a12 (intiate personal portfolio site and more)

@@ -14,11 +14,7 @@ const repoParamsSchema = z.object({
 // Get featured repositories
 export async function getFeaturedRepos(req: Request, res: Response) {
   try {
-<<<<<<< HEAD
     const repos = await githubService.getFeaturedRepos();
-=======
-    const repos = await githubService.getAllRepos(); // Changed to get all repos instead of just featured
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
     
     // Transform for frontend consumption
     const transformedRepos = repos.map(repo => ({
@@ -74,14 +70,6 @@ export async function getAllRepos(req: Request, res: Response) {
   }
 }
 
-<<<<<<< HEAD
-=======
-// Get all public repositories (alias for getAllRepos with better naming)
-export async function getAllPublicRepos(req: Request, res: Response) {
-  return getAllRepos(req, res);
-}
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
 // Get repository details
 export async function getRepoDetails(req: Request, res: Response) {
   try {

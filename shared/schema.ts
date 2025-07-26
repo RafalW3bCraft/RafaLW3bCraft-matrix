@@ -163,17 +163,6 @@ export const comments = pgTable("comments", {
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
-<<<<<<< HEAD
-=======
-// Blog post likes system
-export const likes = pgTable("likes", {
-  id: serial("id").primaryKey(),
-  blogPostId: integer("blog_post_id").references(() => blogPosts.id).notNull(),
-  userId: varchar("user_id").references(() => users.id).notNull(),
-  createdAt: timestamp("created_at").defaultNow(),
-});
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
 // Moderation logs and AI analysis
 export const moderationLogs = pgTable("moderation_logs", {
   id: serial("id").primaryKey(),
@@ -248,14 +237,6 @@ export const insertNotificationSchema = createInsertSchema(notifications).omit({
   createdAt: true,
 });
 
-<<<<<<< HEAD
-=======
-export const insertLikeSchema = createInsertSchema(likes).omit({
-  id: true,
-  createdAt: true,
-});
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
 // Type definitions for all tables
 export type InsertBlogPost = z.infer<typeof insertBlogPostSchema>;
 export type BlogPost = typeof blogPosts.$inferSelect;
@@ -292,8 +273,3 @@ export type InsertModerationLog = z.infer<typeof insertModerationLogSchema>;
 export type ModerationLog = typeof moderationLogs.$inferSelect;
 export type InsertNotification = z.infer<typeof insertNotificationSchema>;
 export type Notification = typeof notifications.$inferSelect;
-<<<<<<< HEAD
-=======
-export type InsertLike = z.infer<typeof insertLikeSchema>;
-export type Like = typeof likes.$inferSelect;
->>>>>>> b0a6a12 (intiate personal portfolio site and more)

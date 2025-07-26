@@ -11,11 +11,6 @@ import {
   auditLogs,
   failedLoginAttempts,
   systemHealth,
-<<<<<<< HEAD
-=======
-  comments,
-  likes,
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
   type User,
   type UpsertUser,
   type BlogPost,
@@ -44,11 +39,7 @@ export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   upsertUser(user: UpsertUser): Promise<User>;
-<<<<<<< HEAD
   
-=======
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
   // Blog operations
   getAllBlogPosts(published?: boolean): Promise<BlogPost[]>;
   getBlogPostBySlug(slug: string): Promise<BlogPost | undefined>;
@@ -56,20 +47,12 @@ export interface IStorage {
   updateBlogPost(id: number, post: Partial<InsertBlogPost>): Promise<BlogPost>;
   deleteBlogPost(id: number): Promise<void>;
   incrementBlogPostViews(slug: string): Promise<void>;
-<<<<<<< HEAD
   
-=======
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
   // Contact operations
   createContactMessage(message: InsertContactMessage): Promise<ContactMessage>;
   getAllContactMessages(): Promise<ContactMessage[]>;
   deleteContactMessage(id: number): Promise<void>;
-<<<<<<< HEAD
   
-=======
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
   // Analytics operations
   recordAnalytics(data: InsertAnalytics): Promise<Analytics>;
   getAnalyticsStats(): Promise<{
@@ -77,7 +60,6 @@ export interface IStorage {
     totalPosts: number;
     totalMessages: number;
   }>;
-<<<<<<< HEAD
   
   // GitHub projects operations
   getGithubProjects(): Promise<GithubProject[]>;
@@ -91,21 +73,6 @@ export interface IStorage {
   getAdminUser(): Promise<User | null>;
   getUserByProviderId(provider: string, providerId: string): Promise<User | undefined>;
   
-=======
-
-  // GitHub projects operations
-  getGithubProjects(): Promise<GithubProject[]>;
-  upsertGithubProject(project: Omit<GithubProject, 'id'>): Promise<GithubProject>;
-
-  // Message operations
-  getUserMessages(userId: string): Promise<Message[]>;
-  createMessage(message: InsertMessage): Promise<Message>;
-
-  // Admin operations
-  getAdminUser(): Promise<User | null>;
-  getUserByProviderId(provider: string, providerId: string): Promise<User | undefined>;
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
   // Falcon Protocol operations
   logAudioPlay(userId: string, audioType: string, sessionId?: string): Promise<AudioPlayLog>;
   hasAudioBeenPlayed(userId: string, audioType: string, sessionId?: string): Promise<boolean>;
@@ -116,11 +83,7 @@ export interface IStorage {
   getRecentFailedLogins(hours: number): Promise<FailedLoginAttempt[]>;
   logSystemHealth(metricType: string, metricName: string, value: any, status?: string): Promise<SystemHealth>;
   getSystemHealthMetrics(metricType?: string, hours?: number): Promise<SystemHealth[]>;
-<<<<<<< HEAD
   
-=======
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
   // Maintenance operations
   cleanupOldAnalytics(cutoffDate: Date): Promise<void>;
   cleanupOldModerationLogs(cutoffDate: Date): Promise<void>;
@@ -168,11 +131,7 @@ export class DatabaseStorage implements IStorage {
         .where(eq(blogPosts.published, published))
         .orderBy(desc(blogPosts.createdAt));
     }
-<<<<<<< HEAD
     
-=======
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
     return await db.select().from(blogPosts)
       .orderBy(desc(blogPosts.createdAt));
   }
@@ -202,16 +161,6 @@ export class DatabaseStorage implements IStorage {
   }
 
   async deleteBlogPost(id: number): Promise<void> {
-<<<<<<< HEAD
-=======
-    // First delete all associated comments
-    await db.delete(comments).where(eq(comments.blogPostId, id));
-
-    // First delete all likes associated with this blog post
-    await db.delete(likes).where(eq(likes.blogPostId, id));
-
-    // Then delete the blog post itself
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
     await db.delete(blogPosts).where(eq(blogPosts.id, id));
   }
 
@@ -329,11 +278,7 @@ export class DatabaseStorage implements IStorage {
       await db
         .delete(analytics)
         .where(lt(analytics.timestamp, cutoffDate));
-<<<<<<< HEAD
       
-=======
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
       // Analytics cleanup completed
     } catch (error) {
       console.error('Failed to cleanup old analytics:', error);
@@ -345,11 +290,7 @@ export class DatabaseStorage implements IStorage {
       await db
         .delete(moderationLogs)
         .where(lt(moderationLogs.createdAt, cutoffDate));
-<<<<<<< HEAD
       
-=======
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
       // Moderation logs cleanup completed
     } catch (error) {
       console.error('Failed to cleanup old moderation logs:', error);
@@ -376,11 +317,7 @@ export class DatabaseStorage implements IStorage {
           : sql`${audioPlayLogs.userId} = ${userId} AND ${audioPlayLogs.audioType} = ${audioType}`
       )
       .limit(1);
-<<<<<<< HEAD
     
-=======
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
     return logs.length > 0;
   }
 
@@ -470,8 +407,4 @@ export class DatabaseStorage implements IStorage {
   }
 }
 
-<<<<<<< HEAD
 export const storage = new DatabaseStorage();
-=======
-export const storage = new DatabaseStorage();
->>>>>>> b0a6a12 (intiate personal portfolio site and more)

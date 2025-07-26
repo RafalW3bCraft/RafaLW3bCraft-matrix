@@ -145,8 +145,4 @@ export function HeroSection() {
       </div>
     </section>
   );
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> b0a6a12 (intiate personal portfolio site and more)

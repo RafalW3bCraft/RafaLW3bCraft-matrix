@@ -16,10 +16,7 @@ import AdminBlogEditor from "@/pages/AdminBlogEditor";
 import AdminMessages from "@/pages/AdminMessages";
 import AdminPosts from "@/pages/AdminPosts";
 import Login from "@/pages/Login";
-<<<<<<< HEAD
 import Dashboard from "@/pages/Dashboard";
-=======
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
 // LoginRedirect removed - direct access only
 
 function Router() {
@@ -35,10 +32,7 @@ function Router() {
       
       {/* Authentication routes */}
       <Route path="/login" component={Login} />
-<<<<<<< HEAD
       <Route path="/dashboard" component={Dashboard} />
-=======
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
       
       {/* Protected admin routes */}
       <Route path="/admin" component={Admin} />

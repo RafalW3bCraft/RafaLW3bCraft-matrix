@@ -5,21 +5,14 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-<<<<<<< HEAD
 import { Github, Mail, Shield, User, AlertCircle, CheckCircle, Lock } from 'lucide-react';
-=======
-import { Shield, AlertCircle, CheckCircle, Lock } from 'lucide-react';
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
 import { useLocation } from 'wouter';
 
 export default function Login() {
   const { user, isLoading, isAuthenticated } = useAuth();
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
-<<<<<<< HEAD
   const [showAdminForm, setShowAdminForm] = useState(false);
-=======
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
   const [adminCredentials, setAdminCredentials] = useState({ username: '', password: '' });
   const [adminLoading, setAdminLoading] = useState(false);
   const [, setLocation] = useLocation();
@@ -62,7 +55,6 @@ export default function Login() {
     }
   }, [isAuthenticated, user, setLocation]);
 
-<<<<<<< HEAD
   const handleGoogleLogin = () => {
     setError(null);
     window.location.href = '/auth/google';
@@ -73,8 +65,6 @@ export default function Login() {
     window.location.href = '/auth/github';
   };
 
-=======
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
   const handleAdminLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setAdminLoading(true);
@@ -141,14 +131,8 @@ export default function Login() {
 
         <Card className="bg-zinc-900/90 border-cyan-500/30 backdrop-blur-sm">
           <CardHeader>
-<<<<<<< HEAD
             <CardTitle className="text-center text-cyan-400 text-xl">
               Choose Your Login Method
-=======
-            <CardTitle className="text-center text-cyan-400 text-xl flex items-center justify-center gap-2">
-              <Lock className="h-5 w-5" />
-              Admin Login
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -172,7 +156,6 @@ export default function Login() {
               </Alert>
             )}
 
-<<<<<<< HEAD
             {/* Login Method Selector */}
             <div className="flex space-x-2 mb-4">
               <Button
@@ -285,61 +268,6 @@ export default function Login() {
                 By signing in, you agree to our terms of service and privacy policy.
               </p>
             </div>
-=======
-            {/* Admin Login Form */}
-            <form onSubmit={handleAdminLogin} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="username" className="text-zinc-300">Admin Username</Label>
-                <Input
-                  id="username"
-                  type="text"
-                  value={adminCredentials.username}
-                  onChange={(e) => setAdminCredentials({ ...adminCredentials, username: e.target.value })}
-                  className="bg-zinc-800 border-zinc-600 text-white"
-                  required
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="password" className="text-zinc-300">Admin Password</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  value={adminCredentials.password}
-                  onChange={(e) => setAdminCredentials({ ...adminCredentials, password: e.target.value })}
-                  className="bg-zinc-800 border-zinc-600 text-white"
-                  required
-                />
-              </div>
-              <Button
-                type="submit"
-                disabled={adminLoading}
-                className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 text-lg"
-              >
-                {adminLoading ? (
-                  <div className="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full" />
-                ) : (
-                  <>
-                    <Lock className="h-5 w-5 mr-2" />
-                    Admin Login
-                  </>
-                )}
-              </Button>
-            </form>
-
-            {/* Admin System Info */}
-            <div className="mt-6 p-4 bg-zinc-800/50 rounded-lg">
-              <h3 className="text-white font-semibold mb-2 flex items-center gap-2">
-                <Shield className="h-4 w-4 text-cyan-400" />
-                Admin-Only System
-              </h3>
-              <ul className="text-zinc-400 text-sm space-y-1">
-                <li>• Secure admin authentication</li>
-                <li>• Full system access</li>
-                <li>• User registration disabled</li>
-                <li>• Enterprise-grade security</li>
-              </ul>
-            </div>
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
           </CardContent>
         </Card>
       </div>

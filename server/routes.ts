@@ -22,7 +22,6 @@ import { aiBlogGenerator } from './ai-blog-generator';
 import { continuousAgent } from './continuous-agent';
 import { falconProtocol } from './falcon-protocol';
 
-<<<<<<< HEAD
 // Middleware to check authentication
 export function requireAuth(req: any, res: any, next: any) {
   const user = req.user || req.session?.user;
@@ -32,37 +31,19 @@ export function requireAuth(req: any, res: any, next: any) {
     return next();
   }
   return res.status(401).json({ message: 'Authentication required' });
-=======
-// Middleware to check authentication (Admin-only)
-export function requireAuth(req: any, res: any, next: any) {
-  const isAdmin = req.session?.isAdmin;
-
-  if (isAdmin) {
-    return next();
-  }
-  return res.status(401).json({ message: 'Admin authentication required' });
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
 }
 
 // Middleware to check admin role - SECURE VERSION
 export function requireAdmin(req: any, res: any, next: any) {
   const user = req.user || req.session?.user;
-<<<<<<< HEAD
   
   // Strict admin validation - only designated admin email
   const AUTHORIZED_ADMIN_EMAIL = 'admin@rafalw3bcraft.com';
   
-=======
-
-  // Strict admin validation - only designated admin email
-  const AUTHORIZED_ADMIN_EMAIL = 'admin@rafalw3bcraft.com';
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
   if (!user) {
     console.warn(`Admin access attempt without authentication - IP: ${req.ip}`);
     return res.status(401).json({ message: 'Authentication required' });
   }
-<<<<<<< HEAD
   
   // Check if user has admin role AND is authorized admin account
   const isAuthorizedAdmin = user?.role === 'admin' && 
@@ -72,18 +53,6 @@ export function requireAdmin(req: any, res: any, next: any) {
     // Log unauthorized admin access attempt
     console.warn(`Unauthorized admin access attempt - User: ${user?.email || user?.id}, Role: ${user?.role}, IP: ${req.ip}`);
     
-=======
-
-  // Check if user has admin role AND is authorized admin account (admin-only system)
-  const isAuthorizedAdmin = user?.role === 'admin' && 
-    (user?.email === AUTHORIZED_ADMIN_EMAIL || user?.id === 'admin_user') &&
-    req.session?.isAdmin;
-
-  if (!isAuthorizedAdmin) {
-    // Log unauthorized admin access attempt
-    console.warn(`Unauthorized admin access attempt - User: ${user?.email || user?.id}, Role: ${user?.role}, IP: ${req.ip}`);
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
     // Create audit log for security monitoring
     if (typeof storage !== 'undefined') {
       storage.createAuditLog({
@@ -101,17 +70,10 @@ export function requireAdmin(req: any, res: any, next: any) {
         severity: 'warning'
       }).catch(console.error);
     }
-<<<<<<< HEAD
     
     return res.status(403).json({ message: 'Admin access required' });
   }
   
-=======
-
-    return res.status(403).json({ message: 'Admin access required' });
-  }
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
   return next();
 }
 
@@ -145,11 +107,7 @@ export async function registerRoutes(app: Express, server: any) {
 
   // Authentication API routes
   app.use('/api/auth', authRoutes);
-<<<<<<< HEAD
   
-=======
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
   // Direct OAuth routes (without /api prefix to match OAuth app configurations)
   app.use('/auth', authRoutes);
 
@@ -175,11 +133,7 @@ export async function registerRoutes(app: Express, server: any) {
   app.get('/api/admin', requireAdmin, (req, res) => {
     res.json({ message: 'Admin access granted', timestamp: new Date().toISOString() });
   });
-<<<<<<< HEAD
   
-=======
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
   app.get('/api/admin/stats', requireAdmin, async (req, res) => {
     try {
       const stats = {
@@ -194,11 +148,7 @@ export async function registerRoutes(app: Express, server: any) {
       res.status(500).json({ error: 'Failed to fetch system stats' });
     }
   });
-<<<<<<< HEAD
   
-=======
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
   app.get('/admin', requireAdmin, (req, res) => {
     res.json({ message: 'Admin panel access granted', user: req.user || 'admin' });
   });
@@ -228,29 +178,17 @@ export async function registerRoutes(app: Express, server: any) {
     try {
       const includeAll = req.query.all === 'true';
       const includeDrafts = req.query.drafts === 'true';
-<<<<<<< HEAD
       
-=======
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
       if (includeAll || includeDrafts) {
         // Admin route - show all posts including drafts
         const user = req.user || (req.session as any)?.user;
         const isAuthorizedAdmin = user?.role === 'admin' && 
           (user?.email === 'admin@rafalw3bcraft.com' || user?.id === 'admin_user');
-<<<<<<< HEAD
         
         if (!isAuthorizedAdmin) {
           return res.status(403).json({ error: 'Admin access required' });
         }
         
-=======
-
-        if (!isAuthorizedAdmin) {
-          return res.status(403).json({ error: 'Admin access required' });
-        }
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
         // Get ALL posts (don't filter by published status)
         const posts = await storage.getAllBlogPosts(); // No filter - return all posts
         res.json(posts);
@@ -269,57 +207,33 @@ export async function registerRoutes(app: Express, server: any) {
     try {
       const { identifier } = req.params;
       let post;
-<<<<<<< HEAD
       
-=======
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
       // Check if identifier is numeric (ID) or string (slug)
       if (/^\d+$/.test(identifier)) {
         // It's an ID - admin access required
         const user = req.user || (req.session as any)?.user;
         const isAuthorizedAdmin = user?.role === 'admin' && 
           (user?.email === 'admin@rafalw3bcraft.com' || user?.id === 'admin_user');
-<<<<<<< HEAD
         
         if (!isAuthorizedAdmin) {
           return res.status(403).json({ error: 'Admin access required for ID-based lookup' });
         }
         
-=======
-
-        if (!isAuthorizedAdmin) {
-          return res.status(403).json({ error: 'Admin access required for ID-based lookup' });
-        }
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
         post = await storage.getBlogPostById(Number(identifier));
       } else {
         // It's a slug - public access
         post = await storage.getBlogPostBySlug(identifier);
-<<<<<<< HEAD
         
-=======
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
         if (post) {
           // Increment view count for public slug access
           await storage.incrementBlogPostViews(identifier);
         }
       }
-<<<<<<< HEAD
       
       if (!post) {
         return res.status(404).json({ error: 'Blog post not found' });
       }
       
-=======
-
-      if (!post) {
-        return res.status(404).json({ error: 'Blog post not found' });
-      }
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
       res.json(post);
     } catch (error) {
       console.error('Error fetching blog post:', error);
@@ -390,11 +304,7 @@ export async function registerRoutes(app: Express, server: any) {
       // Additional security check for contact message access
       const user = req.user || (req.session as any)?.user;
       console.log(`Admin accessing contact messages - User: ${user?.email}, Role: ${user?.role}`);
-<<<<<<< HEAD
       
-=======
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
       const messages = await storage.getAllContactMessages();
       res.json(messages);
     } catch (error) {
@@ -408,11 +318,7 @@ export async function registerRoutes(app: Express, server: any) {
       const { id } = req.params;
       const user = req.user || (req.session as any)?.user;
       console.log(`Admin deleting contact message ${id} - User: ${user?.email}, Role: ${user?.role}`);
-<<<<<<< HEAD
       
-=======
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
       await storage.deleteContactMessage(Number(id));
       res.json({ message: 'Contact message deleted successfully' });
     } catch (error) {
@@ -422,19 +328,6 @@ export async function registerRoutes(app: Express, server: any) {
   });
 
 
-<<<<<<< HEAD
-=======
-  // Login route - redirect to login page
-  app.get('/api/login', (req, res) => {
-    // Check if request expects JSON or should redirect
-    if (req.headers.accept && req.headers.accept.includes('application/json')) {
-      res.json({ message: 'Redirect to login', redirect: '/login' });
-    } else {
-      res.redirect('/login');
-    }
-  });
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
   // Logout route with redirect to home
   app.get('/api/logout', (req, res) => {
     req.logout((err) => {
@@ -442,29 +335,17 @@ export async function registerRoutes(app: Express, server: any) {
         console.error('Logout error:', err);
         return res.status(500).json({ message: 'Logout failed' });
       }
-<<<<<<< HEAD
       
-=======
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
       // Clear session data
       req.session.destroy((sessionErr) => {
         if (sessionErr) {
           console.error('Session destroy error:', sessionErr);
         }
-<<<<<<< HEAD
         
         // Clear cookies
         res.clearCookie('connect.sid');
         res.clearCookie('rafalw3bcraft.sid');
         
-=======
-
-        // Clear cookies
-        res.clearCookie('connect.sid');
-        res.clearCookie('rafalw3bcraft.sid');
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
         // Check if request expects JSON or should redirect
         if (req.headers.accept && req.headers.accept.includes('application/json')) {
           res.json({ message: 'Logged out successfully', redirect: '/' });
@@ -482,17 +363,10 @@ export async function registerRoutes(app: Express, server: any) {
         storage.getAllBlogPosts(), // Get all posts for admin
         storage.getAllContactMessages()
       ]);
-<<<<<<< HEAD
       
       // Calculate total views from all posts
       const totalViews = posts.reduce((sum, post) => sum + (post.views || 0), 0);
       
-=======
-
-      // Calculate total views from all posts
-      const totalViews = posts.reduce((sum, post) => sum + (post.views || 0), 0);
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
       res.json({
         totalPosts: posts.length,
         totalMessages: messages.length,
@@ -563,7 +437,6 @@ export async function registerRoutes(app: Express, server: any) {
     try {
       const now = Date.now();
       const lastTrigger = triggerLimiter.get('maintenance') || 0;
-<<<<<<< HEAD
       
       if (now - lastTrigger < TRIGGER_COOLDOWN) {
         return res.status(429).json({ error: 'Please wait before triggering again' });
@@ -574,18 +447,6 @@ export async function registerRoutes(app: Express, server: any) {
       // Log maintenance trigger
       console.log('🔧 Manual maintenance cycle triggered');
       
-=======
-
-      if (now - lastTrigger < TRIGGER_COOLDOWN) {
-        return res.status(429).json({ error: 'Please wait before triggering again' });
-      }
-
-      triggerLimiter.set('maintenance', now);
-
-      // Log maintenance trigger
-      console.log('🔧 Manual maintenance cycle triggered');
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
       res.json({ message: 'Maintenance cycle triggered' });
     } catch (error) {
       console.error('Error triggering maintenance:', error);
@@ -597,7 +458,6 @@ export async function registerRoutes(app: Express, server: any) {
     try {
       const now = Date.now();
       const lastTrigger = triggerLimiter.get('security') || 0;
-<<<<<<< HEAD
       
       if (now - lastTrigger < TRIGGER_COOLDOWN) {
         return res.status(429).json({ error: 'Please wait before triggering again' });
@@ -608,18 +468,6 @@ export async function registerRoutes(app: Express, server: any) {
       // Log security audit trigger
       console.log('🔒 Manual security audit triggered');
       
-=======
-
-      if (now - lastTrigger < TRIGGER_COOLDOWN) {
-        return res.status(429).json({ error: 'Please wait before triggering again' });
-      }
-
-      triggerLimiter.set('security', now);
-
-      // Log security audit trigger
-      console.log('🔒 Manual security audit triggered');
-
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
       res.json({ message: 'Security audit triggered' });
     } catch (error) {
       console.error('Error triggering security audit:', error);
@@ -648,17 +496,7 @@ export async function registerRoutes(app: Express, server: any) {
     }
   });
 
-<<<<<<< HEAD
 
-=======
-  // GitHub API routes
-  app.get('/api/github/featured', githubController.getFeaturedRepos);
-  app.get('/api/github/repos', githubController.getAllRepos);
-  app.get('/api/github/public', githubController.getAllPublicRepos);
-  app.get('/api/github/repos/:repo', githubController.getRepoDetails);
-  app.get('/api/github/repos/:repo/commits', githubController.getRecentCommits);
-  app.get('/api/github/stats', githubController.getGitHubStats);
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
 
   // Initialize AI systems - non-blocking, happens after HTTP server starts
   setTimeout(() => {

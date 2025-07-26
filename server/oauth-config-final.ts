@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import { Strategy as GitHubStrategy } from 'passport-github2';
@@ -191,14 +190,3 @@ export function configureOAuth() {
 }
 
 export { config as oauthConfig };
-=======
-// OAuth functionality removed - Admin-only system
-export function configureOAuth() {
-  // No OAuth strategies configured - Admin-only access
-  console.log('OAuth disabled - Admin-only system');
-}
-
-export const oauthConfig = {
-  // OAuth disabled
-};
->>>>>>> b0a6a12 (intiate personal portfolio site and more)
